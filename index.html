@@ -278,7 +278,7 @@ function updateCart() {
         cartItems.innerHTML += `
         <div class="cart-item">
             ${item.name} - $${item.price.toFixed(2)}
-            <button onclick="removeItem(${index})" 
+            <button onclick="removeItem(event, ${index})" 
                     style="float:right; background:red; border:none; color:white; cursor:pointer;">
                 ✖
             </button>
@@ -297,7 +297,8 @@ function updateCart() {
 }
 
 // REMOVE ITEM must be OUTSIDE updateCart
-function removeItem(index) {
+function removeItem(event, index) {
+    event.stopPropagation(); // 🚫 prevents cart from closing
     cart.splice(index, 1);
     updateCart();
 }
