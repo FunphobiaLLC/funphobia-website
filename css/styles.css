@@ -152,6 +152,14 @@ body {
     box-shadow: 0 0 15px rgba(0,255,255,0.8);
 }
 /* ===== PRODUCTS ===== */
+.section-title {
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 70px;
+    color: #00ffff;
+    text-shadow: 0 0 15px rgba(0,255,255,0.7);
+    letter-spacing: 4px;
+}
 .products {
     padding-top: 150px;
     max-width: 1200px;
