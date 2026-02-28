@@ -10,6 +10,7 @@
             font-family: 'Segoe UI', sans-serif;
             background: radial-gradient(circle at top, #1a0000, #000000 70%);
             color: white;
+            overflow-x: hidden;
         }
 
         /* ===== NAVBAR ===== */
@@ -26,16 +27,21 @@
         .navbar-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 10px 30px;
-            height: 70px;
+            padding: 5px 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo img {
-            height: 50px;
+            height: 65px;
             display: block;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6));
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -59,27 +65,48 @@
             transition: 0.3s ease;
         }
 
+        .nav-links a.active {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0,255,255,0.9);
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -4px;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            transition: 0.4s ease;
+            transform: translateX(-50%);
+        }
+
         .nav-links a:hover {
             color: white;
             text-shadow: 0 0 8px rgba(0,255,255,0.7);
         }
 
+        .nav-links a:hover::after {
+            width: 120%;
+        }
+
         /* ===== PAGE CONTENT ===== */
-        .page-container {
+        .page-content {
+            min-height: 100vh;
             padding-top: 150px;
             text-align: center;
-            min-height: 70vh;
         }
 
-        .page-container h1 {
+        .page-content h1 {
             font-size: 48px;
-            color: #00ffff;
+            color: #ff1a1a;
             letter-spacing: 3px;
+            margin-bottom: 20px;
         }
 
-        .page-container p {
+        .page-content p {
             color: #aaa;
-            margin-top: 20px;
         }
 
         /* ===== FOOTER ===== */
@@ -112,6 +139,12 @@
             text-decoration: none;
             color: #aaa;
             margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            transform: translateX(5px);
         }
 
         .footer-bottom {
@@ -133,15 +166,15 @@
             </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="candlephobia.html">CandlePhobia</a></li>
-                <li><a href="entertainment.html">EntertainmentItems</a></li>
-                <li><a href="gamestudio.html">GameStudio</a></li>
+                <li><a href="candles.html" class="active">Candles</a></li>
+                <li><a href="entertainment.html">Entertainment Items</a></li>
+                <li><a href="game.html">Game Studio</a></li>
             </ul>
         </div>
     </nav>
 </header>
 
-<div class="page-container">
+<div class="page-content">
     <h1>PAGE TITLE</h1>
     <p>Content coming soon.</p>
 </div>
@@ -150,22 +183,21 @@
     <div class="footer-container">
         <div class="footer-section">
             <h3>Company</h3>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-            <a href="#">Careers</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
         </div>
 
         <div class="footer-section">
             <h3>Legal</h3>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="tos.html">Terms of Service</a>
         </div>
 
         <div class="footer-section">
             <h3>Products</h3>
-            <a href="#">CandlePhobia</a>
-            <a href="#">Entertainment Items</a>
-            <a href="#">Game Studio</a>
+            <a href="candles.html">Candles</a>
+            <a href="entertainment.html">Entertainment Items</a>
+            <a href="game.html">Game Studio</a>
         </div>
     </div>
 
