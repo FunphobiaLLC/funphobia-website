@@ -3,8 +3,8 @@
 <head>
     <title>FunPhobia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
 
+    <style>
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
@@ -14,7 +14,7 @@
         }
 
         /* ===== NAVBAR ===== */
-        .navbar {
+       .navbar {
             position: fixed;
             top: 0;
             width: 100%;
@@ -90,9 +90,7 @@
         .nav-links a:hover::after {
             width: 120%;
         }
-
-        /* ===== PAGE CONTENT ===== */
-        .page-content {
+                .page-content {
             min-height: 100vh;
             padding-top: 150px;
             text-align: center;
@@ -109,8 +107,140 @@
             color: #aaa;
         }
 
-        /* ===== FOOTER ===== */
+        /* Cart Icon */
+        .cart {
+            cursor: pointer;
+            position: relative;
+            font-size: 18px;
+        }
+
+.cart-button {
+    position: relative;
+    padding: 8px 18px;
+    border: 2px solid #00ffff;
+    border-radius: 6px;
+    color: #00ffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 0 10px rgba(0,255,255,0.4);
+}
+
+.cart-button:hover {
+    background: #00ffff;
+    color: black;
+    box-shadow: 0 0 15px rgba(0,255,255,0.8);
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: red;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 50%;
+    color: white;
+}
+
+        /* ===== PRODUCTS ===== */
+        .products {
+            padding-top: 150px;
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,0,0,0.2);
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0,255,255,0.4);
+        }
+
+        .product-card h3 {
+            color: #00ffff;
+        }
+
+        .product-card button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #00ffff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* ===== CART PANEL ===== */
+.cart-panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 350px;
+    height: 100%;
+    background: #0a0a0a;
+    padding: 20px;
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+    z-index: 2000;
+    overflow-y: auto;
+    box-shadow: -5px 0 20px rgba(0,255,255,0.2);
+}
+
+.cart-panel.active {
+    transform: translateX(0);
+}
+
+        .cart-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        .cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+        .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: red;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 50%;
+    color: white;
+    transition: 0.2s ease;
+}
+
+.close-cart:hover {
+    color: #00ffff;
+}
+
         footer {
+            margin-top: 100px;
+            padding: 40px;
+            text-align: center;
+            color: #777;
+        }
+         footer {
             background: #050505;
             padding: 60px 20px 30px;
             border-top: 1px solid rgba(255,0,0,0.2);
@@ -165,18 +295,37 @@
                 <img src="logo.png" alt="FunPhobia Logo">
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="candles.html">Candles</a></li>
                 <li><a href="entertainment.html">Entertainment Items</a></li>
-                <li><a href="game.html" class="active">Game Studio</a></li>
+                <li><a href="game.html">Game Studio</a></li>
             </ul>
+
+            <div class="cart-button" onclick="toggleCart()">
+    🛒 Cart
+    <span class="cart-count" id="cart-count">0</span>
+</div>
         </div>
     </nav>
 </header>
-
+    
 <div class="page-content">
-    <h1>PAGE TITLE</h1>
+    <h1>ERROR 404</h1>
     <p>Content coming soon.</p>
+</div>
+<!-- CART PANEL -->
+<div class="cart-panel" id="cart-panel">
+    <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button class="close-cart" onclick="toggleCart()">✖</button>
+    </div>
+    <div id="cart-items"></div>
+    <h3 id="cart-total">Total: $0</h3>
+<button 
+    onclick="window.open('https://example.com', '_blank');"
+    style="width:100%; padding:12px; background:#00ffff; border:none; font-weight:bold; margin-top:10px;">
+    Proceed to Checkout
+</button>
 </div>
 
 <footer>
@@ -205,6 +354,73 @@
         © 2026 FunPhobia LLC. All Rights Reserved.
     </div>
 </footer>
+
+<script>
+
+let cart = [];
+
+function addToCart(name, price) {
+    cart.push({ name, price });
+    updateCart();
+}
+
+function updateCart() {
+    const cartItems = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+    const cartTotal = document.getElementById("cart-total");
+
+    cartItems.innerHTML = "";
+    let total = 0;
+
+    // Loop through cart properly
+    cart.forEach((item, index) => {
+        total += item.price;
+
+        cartItems.innerHTML += `
+        <div class="cart-item">
+            ${item.name} - $${item.price.toFixed(2)}
+            <button onclick="removeItem(event, ${index})" 
+                    style="float:right; background:red; border:none; color:white; cursor:pointer;">
+                ✖
+            </button>
+        </div>`;
+    });
+
+    cartCount.innerText = cart.length;
+
+    // Animate cart count pop
+    cartCount.style.transform = "scale(1.3)";
+    setTimeout(() => {
+        cartCount.style.transform = "scale(1)";
+    }, 200);
+
+    cartTotal.innerText = "Total: $" + total.toFixed(2);
+}
+
+// REMOVE ITEM must be OUTSIDE updateCart
+function removeItem(event, index) {
+    event.stopPropagation(); // 🚫 prevents cart from closing
+    cart.splice(index, 1);
+    updateCart();
+}
+
+function toggleCart() {
+    document.getElementById("cart-panel").classList.toggle("active");
+}
+
+// Close cart when clicking outside
+document.addEventListener("click", function(event) {
+    const cartPanel = document.getElementById("cart-panel");
+    const cartIcon = document.querySelector(".cart-button");
+
+    if (!cartPanel.contains(event.target) && 
+        !cartIcon.contains(event.target) && 
+        cartPanel.classList.contains("active")) {
+        cartPanel.classList.remove("active");
+    }
+});
+
+</script>
 
 </body>
 </html>
