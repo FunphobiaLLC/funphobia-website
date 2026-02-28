@@ -14,7 +14,11 @@ fetch("components/cart-panel.html")
   .then(res => res.text())
   .then(data => {
     document.getElementById("cart-container").innerHTML = data;
-    updateCart(); // update AFTER cart panel loads
+
+    // 🔥 Reload cart AFTER panel exists
+    cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    updateCart();
   });
 
 // Footer
@@ -112,7 +116,4 @@ document.addEventListener("click", function(event) {
 
         cartPanel.classList.remove("active");
     }
-});
-document.addEventListener("DOMContentLoaded", () => {
-    updateCart();
 });
