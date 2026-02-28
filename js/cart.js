@@ -1,6 +1,6 @@
 <script>
 
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function addToCart(name, price) {
     cart.push({ name, price });
@@ -38,6 +38,7 @@ function updateCart() {
     }, 200);
 
     cartTotal.innerText = "Total: $" + total.toFixed(2);
+    localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 // REMOVE ITEM must be OUTSIDE updateCart
