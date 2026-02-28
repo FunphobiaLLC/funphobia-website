@@ -133,7 +133,21 @@ body {
     color: white;
     transition: 0.2s ease;
 }
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: #00ffff;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
 
+.checkout-btn:hover {
+    background: white;
+    box-shadow: 0 0 15px rgba(0,255,255,0.8);
+}
 /* ===== PRODUCTS ===== */
 .products {
     padding-top: 150px;
