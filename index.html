@@ -61,15 +61,33 @@
             font-size: 18px;
         }
 
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background: red;
-            font-size: 12px;
-            padding: 3px 6px;
-            border-radius: 50%;
-        }
+.cart-button {
+    position: relative;
+    padding: 8px 18px;
+    border: 2px solid #00ffff;
+    border-radius: 6px;
+    color: #00ffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cart-button:hover {
+    background: #00ffff;
+    color: black;
+    box-shadow: 0 0 15px rgba(0,255,255,0.8);
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: red;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 50%;
+    color: white;
+}
 
         /* ===== PRODUCTS ===== */
         .products {
@@ -248,6 +266,16 @@ function updateCart() {
 function toggleCart() {
     document.getElementById("cart-panel").classList.toggle("active");
 }
+    document.addEventListener("click", function(event) {
+    const cartPanel = document.getElementById("cart-panel");
+    const cartIcon = document.querySelector(".cart-button");
+
+    if (!cartPanel.contains(event.target) && 
+        !cartIcon.contains(event.target) && 
+        cartPanel.classList.contains("active")) {
+        cartPanel.classList.remove("active");
+    }
+});
 
 </script>
 
