@@ -14,7 +14,7 @@
         }
 
         /* ===== NAVBAR ===== */
-        .navbar {
+       .navbar {
             position: fixed;
             top: 0;
             width: 100%;
@@ -34,8 +34,14 @@
         }
 
         .logo img {
-            height: 65px;
+            height: 75px;
             display: block;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6));
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -51,7 +57,38 @@
             text-decoration: none;
             color: #ccc;
             font-size: 15px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+            transition: 0.3s ease;
+        }
+
+        .nav-links a.active {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0,255,255,0.9);
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -4px;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            transition: 0.4s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover {
+            color: white;
+            text-shadow: 0 0 8px rgba(0,255,255,0.7);
+        }
+
+        .nav-links a:hover::after {
+            width: 120%;
         }
 
         /* Cart Icon */
