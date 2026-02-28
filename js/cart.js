@@ -79,6 +79,15 @@ function removeItem(event, index) {
     cart.splice(index, 1);
     updateCart();
 }
+function goToCheckout() {
+
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    window.open("https://example.com", "_blank");
+}
 
 function toggleCart() {
     const panel = document.getElementById("cart-panel");
