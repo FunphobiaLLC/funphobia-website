@@ -1,4 +1,33 @@
-<script>
+// ===============================
+// LOAD COMPONENTS
+// ===============================
+
+// Navbar
+fetch("components/navbar.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+  });
+
+// Cart Panel
+fetch("components/cart-panel.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("cart-container").innerHTML = data;
+    updateCart(); // update AFTER cart panel loads
+  });
+
+// Footer
+fetch("components/footer.html")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+
+
+// ===============================
+// CART LOGIC
+// ===============================
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -8,22 +37,25 @@ function addToCart(name, price) {
 }
 
 function updateCart() {
+
     const cartItems = document.getElementById("cart-items");
     const cartCount = document.getElementById("cart-count");
     const cartTotal = document.getElementById("cart-total");
 
+    // 🔥 Prevent errors if cart panel not loaded yet
+    if (!cartItems || !cartCount || !cartTotal) return;
+
     cartItems.innerHTML = "";
     let total = 0;
 
-    // Loop through cart properly
     cart.forEach((item, index) => {
         total += item.price;
 
         cartItems.innerHTML += `
         <div class="cart-item">
             ${item.name} - $${item.price.toFixed(2)}
-            <button onclick="removeItem(event, ${index})" 
-                    style="float:right; background:red; border:none; color:white; cursor:pointer;">
+            <button onclick="removeItem(event, ${index})"
+                style="float:right; background:red; border:none; color:white; cursor:pointer;">
                 ✖
             </button>
         </div>`;
@@ -31,37 +63,44 @@ function updateCart() {
 
     cartCount.innerText = cart.length;
 
-    // Animate cart count pop
+    // Animate cart count
     cartCount.style.transform = "scale(1.3)";
     setTimeout(() => {
         cartCount.style.transform = "scale(1)";
     }, 200);
 
     cartTotal.innerText = "Total: $" + total.toFixed(2);
+
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// REMOVE ITEM must be OUTSIDE updateCart
 function removeItem(event, index) {
-    event.stopPropagation(); // 🚫 prevents cart from closing
+    event.stopPropagation();
     cart.splice(index, 1);
     updateCart();
 }
 
 function toggleCart() {
-    document.getElementById("cart-panel").classList.toggle("active");
+    const panel = document.getElementById("cart-panel");
+    if (panel) panel.classList.toggle("active");
 }
 
-// Close cart when clicking outside
+
+// ===============================
+// CLICK OUTSIDE TO CLOSE
+// ===============================
+
 document.addEventListener("click", function(event) {
+
     const cartPanel = document.getElementById("cart-panel");
     const cartIcon = document.querySelector(".cart-button");
 
-    if (!cartPanel.contains(event.target) && 
-        !cartIcon.contains(event.target) && 
+    if (!cartPanel || !cartIcon) return;
+
+    if (!cartPanel.contains(event.target) &&
+        !cartIcon.contains(event.target) &&
         cartPanel.classList.contains("active")) {
+
         cartPanel.classList.remove("active");
     }
 });
-
-</script>
