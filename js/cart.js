@@ -1,7 +1,9 @@
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 // ===============================
 // LOAD COMPONENTS
 // ===============================
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 // Navbar
 fetch("components/navbar.html")
   .then(res => res.text())
@@ -15,10 +17,8 @@ fetch("components/cart-panel.html")
   .then(data => {
     document.getElementById("cart-container").innerHTML = data;
 
-    // 🔥 Reload cart AFTER panel exists
-    cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    updateCart();
+    // 🔥 Now that panel exists, initialize cart UI
+    initializeCartUI();
   });
 
 // Footer
@@ -28,6 +28,14 @@ fetch("components/footer.html")
     document.getElementById("footer").innerHTML = data;
   });
 
+
+// ===============================
+// INITIALIZE CART UI (NEW)
+// ===============================
+
+function initializeCartUI() {
+    updateCart();
+}
 
 // ===============================
 // CART LOGIC
