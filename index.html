@@ -3,8 +3,8 @@
 <head>
     <title>FunPhobia LLC</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
 
+    <style>
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
@@ -14,167 +14,129 @@
         }
 
         /* ===== NAVBAR ===== */
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    backdrop-filter: blur(10px);
-    background: rgba(0, 0, 0, 0.6);
-    border-bottom: 1px solid rgba(255, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-/* NEW inner container */
-.navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 5px 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo img {
-    height: 75px;
-    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6));
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 35px;
-    margin: 0;
-    padding: 0;
-    align-items: center; /* Perfect vertical alignment */
-}
-
-       .nav-links a {
-    text-decoration: none;
-    color: #ccc;
-    font-size: 15px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    font-weight: 500;
-    position: relative;
-    padding: 5px 0;
-    transition: 0.3s ease;
-}
-                .nav-links a.active {
-            color: #00ffff;
-            text-shadow: 0 0 10px rgba(0,255,255,0.9);
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+            z-index: 1000;
         }
 
-/* Animated glowing underline */
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -4px;
-    width: 0%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #00ffff, transparent);
-    transition: 0.4s ease;
-    transform: translateX(-50%);
-}
-
-.nav-links a:hover {
-    color: white;
-    text-shadow: 0 0 8px rgba(0,255,255,0.7);
-}
-
-.nav-links a:hover::after {
-    width: 120%;
-}
-        /* ===== HERO SECTION ===== */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-top: 80px;
-        }
-
-        .hero h1 {
-            font-size: 60px;
-            letter-spacing: 4px;
-            color: #ff1a1a;
-            text-shadow: 0 0 20px rgba(255,0,0,0.7);
-            margin: 0;
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: #bbb;
-            margin-top: 20px;
-            max-width: 600px;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            background: #050505;
-            padding: 60px 20px 30px;
-            border-top: 1px solid rgba(255,0,0,0.2);
-        }
-
-        .footer-container {
+        .navbar-container {
             max-width: 1200px;
-            margin: auto;
+            margin: 0 auto;
+            padding: 5px 10px;
             display: flex;
             justify-content: space-between;
-            flex-wrap: wrap;
+            align-items: center;
         }
 
-        .footer-section {
-            margin: 20px;
-            min-width: 200px;
-        }
-
-        .footer-section h3 {
-            color: #ff1a1a;
-            margin-bottom: 15px;
-        }
-
-        .footer-section a {
+        .logo img {
+            height: 65px;
             display: block;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .nav-links a {
             text-decoration: none;
-            color: #aaa;
-            margin-bottom: 10px;
+            color: #ccc;
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+
+        /* Cart Icon */
+        .cart {
+            cursor: pointer;
+            position: relative;
+            font-size: 18px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: red;
+            font-size: 12px;
+            padding: 3px 6px;
+            border-radius: 50%;
+        }
+
+        /* ===== PRODUCTS ===== */
+        .products {
+            padding-top: 150px;
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,0,0,0.2);
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
             transition: 0.3s;
         }
 
-        .footer-section a:hover {
-            color: white;
-            transform: translateX(5px);
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(0,255,255,0.4);
         }
 
-        .footer-bottom {
+        .product-card h3 {
+            color: #00ffff;
+        }
+
+        .product-card button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #00ffff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* ===== CART PANEL ===== */
+        .cart-panel {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 350px;
+            height: 100%;
+            background: #111;
+            padding: 20px;
+            transition: 0.4s;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .cart-panel.active {
+            right: 0;
+        }
+
+        .cart-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        footer {
+            margin-top: 100px;
+            padding: 40px;
             text-align: center;
-            margin-top: 40px;
-            color: #666;
-            font-size: 14px;
-        }
-
-        /* Smooth fade animation */
-        .hero h1, .hero p {
-            animation: fadeIn 2s ease forwards;
-            opacity: 0;
-        }
-
-        .hero p {
-            animation-delay: 0.5s;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+            color: #777;
         }
 
     </style>
@@ -185,52 +147,89 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="logo">
-                <img src="logo.png" alt="FunPhobia Logo">
+                <img src="logo.png">
             </div>
+
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="candles.html">Candles</a></li>
-                <li><a href="entertainment.html">Entertainment Items</a></li>
+                <li><a href="entertainment.html">Entertainment</a></li>
                 <li><a href="game.html">Game Studio</a></li>
             </ul>
+
+            <div class="cart" onclick="toggleCart()">
+                🛒
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
         </div>
     </nav>
 </header>
 
-<section class="hero">
-    <h1>FunPhobia LLC</h1>
-    <p>Immersive horror experiences, entertainment products, and next-generation game development.</p>
+<!-- PRODUCTS -->
+<section class="products">
+
+    <div class="product-card">
+        <h3>Midnight Fear Candle</h3>
+        <p>$19.99</p>
+        <button onclick="addToCart('Midnight Fear Candle', 19.99)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <h3>Haunted Atmosphere Kit</h3>
+        <p>$49.99</p>
+        <button onclick="addToCart('Haunted Atmosphere Kit', 49.99)">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <h3>FunPhobia Indie Game</h3>
+        <p>$14.99</p>
+        <button onclick="addToCart('FunPhobia Indie Game', 14.99)">Add to Cart</button>
+    </div>
+
 </section>
 
+<!-- CART PANEL -->
+<div class="cart-panel" id="cart-panel">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <h3 id="cart-total">Total: $0</h3>
+</div>
+
 <footer>
-    <div class="footer-container">
-        
-        <div class="footer-section">
-            <h3>Company</h3>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </div>
-
-        <!-- LEGAL NOW IN THE MIDDLE -->
-        <div class="footer-section">
-            <h3>Legal</h3>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="tos.html">Terms of Service</a>
-        </div>
-
-        <div class="footer-section">
-            <h3>Products</h3>
-            <a href="candles.html">Candles</a>
-            <a href="entertainment.html">Entertainment Items</a>
-            <a href="game.html">Game Studio</a>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        © 2026 FunPhobia LLC. All Rights Reserved.
-    </div>
+    © 2026 FunPhobia LLC. All Rights Reserved.
 </footer>
+
+<script>
+
+let cart = [];
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    updateCart();
+}
+
+function updateCart() {
+    const cartItems = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+    const cartTotal = document.getElementById("cart-total");
+
+    cartItems.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.price;
+        cartItems.innerHTML += `<div class="cart-item">${item.name} - $${item.price}</div>`;
+    });
+
+    cartCount.innerText = cart.length;
+    cartTotal.innerText = "Total: $" + total.toFixed(2);
+}
+
+function toggleCart() {
+    document.getElementById("cart-panel").classList.toggle("active");
+}
+
+</script>
 
 </body>
 </html>
