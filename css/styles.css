@@ -103,9 +103,9 @@ body {
     color: #aaa;
 }
 
-.section {
-    padding: 100px 20px;   /* top/bottom | left/right */
-}
+.spacer-sm { margin-top: 40px; }
+.spacer-md { margin-top: 80px; }
+.spacer-lg { margin-top: 140px; }
 /* ===== CART BUTTON ===== */
 .cart-button {
     position: relative;
