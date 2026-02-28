@@ -149,41 +149,32 @@ body {
     box-shadow: 0 0 15px rgba(0,255,255,0.8);
 }
 /* ===== PRODUCTS ===== */
- .products {
-            padding-top: 150px;
-            max-width: 1200px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
+.products {
+    padding-top: 150px;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
 
-        .product-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,0,0,0.2);
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px;
-            transition: 0.3s;
-        }
+.product-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,0,0,0.2);
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    transition: 0.3s;
+}
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(0,255,255,0.4);
-        }
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0,255,255,0.4);
+}
 
-        .product-card h3 {
-            color: #00ffff;
-        }
-
-        .product-card button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: #00ffff;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
+.product-card h3 {
+    color: #00ffff;
+}
 
 /* ===== CART PANEL ===== */
 .cart-panel {
