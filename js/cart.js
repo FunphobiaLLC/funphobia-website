@@ -1,7 +1,7 @@
 // ===============================
 // LOAD COMPONENTS
 // ===============================
-
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 // Navbar
 fetch("components/navbar.html")
   .then(res => res.text())
@@ -32,8 +32,6 @@ fetch("components/footer.html")
 // ===============================
 // CART LOGIC
 // ===============================
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function addToCart(name, price) {
     cart.push({ name, price });
