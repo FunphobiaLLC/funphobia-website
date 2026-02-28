@@ -2,38 +2,217 @@
 <html>
 <head>
     <title>FunPhobia LLC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+
         body {
-            background: black;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #1a0000, #000000 70%);
             color: white;
-            font-family: Arial;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #ff1a1a;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px #ff0000;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ddd;
+            font-size: 16px;
+            transition: 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #ff1a1a;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding-top: 100px;
+            padding-top: 80px;
         }
-        h1 {
-            color: red;
+
+        .hero h1 {
+            font-size: 60px;
+            letter-spacing: 4px;
+            color: #ff1a1a;
+            text-shadow: 0 0 20px rgba(255,0,0,0.7);
+            margin: 0;
         }
-        button {
-            padding: 15px 30px;
-            font-size: 18px;
-            background: red;
+
+        .hero p {
+            font-size: 20px;
+            color: #bbb;
+            margin-top: 20px;
+            max-width: 600px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #050505;
+            padding: 60px 20px 30px;
+            border-top: 1px solid rgba(255,0,0,0.2);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            margin: 20px;
+            min-width: 200px;
+        }
+
+        .footer-section h3 {
+            color: #ff1a1a;
+            margin-bottom: 15px;
+        }
+
+        .footer-section a {
+            display: block;
+            text-decoration: none;
+            color: #aaa;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .footer-section a:hover {
             color: white;
-            border: none;
-            cursor: pointer;
+            transform: translateX(5px);
         }
-        button:hover {
-            background: darkred;
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 14px;
         }
+
+        /* Smooth fade animation */
+        .hero h1, .hero p {
+            animation: fadeIn 2s ease forwards;
+            opacity: 0;
+        }
+
+        .hero p {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
     </style>
 </head>
 <body>
 
-<h1>FunPhobia LLC</h1>
-<p>Welcome to the fear experience.</p>
+<header>
+    <nav class="navbar">
+        <div class="logo">FunPhobia</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="candlephobia.html">CandlePhobia</a></li>
+            <li><a href="entertainment.html">EntertainmentItems</a></li>
+            <li><a href="gamestudio.html">GameStudio</a></li>
+        </ul>
+    </nav>
+</header>
 
-<button onclick="alert('Coming Soon...')">
-Enter If You Dare
-</button>
+<section class="hero">
+    <h1>FunPhobia LLC</h1>
+    <p>Immersive horror experiences, entertainment products, and next-generation game development.</p>
+</section>
+
+<footer>
+    <div class="footer-container">
+        
+        <div class="footer-section">
+            <h3>Company</h3>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Careers</a>
+        </div>
+
+        <!-- LEGAL NOW IN THE MIDDLE -->
+        <div class="footer-section">
+            <h3>Legal</h3>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+
+        <div class="footer-section">
+            <h3>Products</h3>
+            <a href="#">CandlePhobia</a>
+            <a href="#">Entertainment Items</a>
+            <a href="#">Game Studio</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 FunPhobia LLC. All Rights Reserved.
+    </div>
+</footer>
 
 </body>
 </html>
