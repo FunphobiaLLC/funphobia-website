@@ -70,6 +70,7 @@
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s ease;
+    box-shadow: 0 0 10px rgba(0,255,255,0.4);
 }
 
 .cart-button:hover {
@@ -127,22 +128,24 @@
         }
 
         /* ===== CART PANEL ===== */
-        .cart-panel {
-            position: fixed;
-            right: -400px;
-            top: 0;
-            width: 350px;
-            height: 100%;
-            background: #111;
-            padding: 20px;
-            transition: 0.4s;
-            z-index: 2000;
-            overflow-y: auto;
-        }
+.cart-panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 350px;
+    height: 100%;
+    background: #0a0a0a;
+    padding: 20px;
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+    z-index: 2000;
+    overflow-y: auto;
+    box-shadow: -5px 0 20px rgba(0,255,255,0.2);
+}
 
-        .cart-panel.active {
-            right: 0;
-        }
+.cart-panel.active {
+    transform: translateX(0);
+}
 
         .cart-item {
             margin-bottom: 15px;
@@ -161,6 +164,17 @@
     color: white;
     font-size: 20px;
     cursor: pointer;
+}
+        .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: red;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 50%;
+    color: white;
+    transition: 0.2s ease;
 }
 
 .close-cart:hover {
@@ -231,6 +245,9 @@
     </div>
     <div id="cart-items"></div>
     <h3 id="cart-total">Total: $0</h3>
+    <button style="width:100%; padding:12px; background:#00ffff; border:none; font-weight:bold; margin-top:10px;">
+    Proceed to Checkout
+</button>
 </div>
 
 <footer>
@@ -242,7 +259,7 @@
 let cart = [];
 
 function addToCart(name, price) {
-    cart.push({name, price});
+    cart.push({ name, price });
     updateCart();
 }
 
@@ -254,19 +271,43 @@ function updateCart() {
     cartItems.innerHTML = "";
     let total = 0;
 
-    cart.forEach(item => {
+    // Loop through cart properly
+    cart.forEach((item, index) => {
         total += item.price;
-        cartItems.innerHTML += `<div class="cart-item">${item.name} - $${item.price}</div>`;
+
+        cartItems.innerHTML += `
+        <div class="cart-item">
+            ${item.name} - $${item.price.toFixed(2)}
+            <button onclick="removeItem(${index})" 
+                    style="float:right; background:red; border:none; color:white; cursor:pointer;">
+                ✖
+            </button>
+        </div>`;
     });
 
     cartCount.innerText = cart.length;
+
+    // Animate cart count pop
+    cartCount.style.transform = "scale(1.3)";
+    setTimeout(() => {
+        cartCount.style.transform = "scale(1)";
+    }, 200);
+
     cartTotal.innerText = "Total: $" + total.toFixed(2);
+}
+
+// REMOVE ITEM must be OUTSIDE updateCart
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
 }
 
 function toggleCart() {
     document.getElementById("cart-panel").classList.toggle("active");
 }
-    document.addEventListener("click", function(event) {
+
+// Close cart when clicking outside
+document.addEventListener("click", function(event) {
     const cartPanel = document.getElementById("cart-panel");
     const cartIcon = document.querySelector(".cart-button");
 
