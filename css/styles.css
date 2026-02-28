@@ -103,6 +103,9 @@ body {
     color: #aaa;
 }
 
+.section {
+    padding: 100px 20px;   /* top/bottom | left/right */
+}
 /* ===== CART BUTTON ===== */
 .cart-button {
     position: relative;
