@@ -113,3 +113,6 @@ document.addEventListener("click", function(event) {
         cartPanel.classList.remove("active");
     }
 });
+document.addEventListener("DOMContentLoaded", () => {
+    updateCart();
+});
